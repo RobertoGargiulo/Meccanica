@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={182mm,257mm},
+ left=14mm,
+ top=20mm,
+ }
+ \usepackage{amsthm}
+ \usepackage[utf8]{inputenc}
+ \usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{commath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\graphicspath{ {Immagini/} }
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    citecolor=green
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+%Theorem Environments
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{property}{Proprietà}[section]
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{prop}[defn]{Proposizione}
+\newtheorem{example}{Esempi}[subsection]
+\newtheorem{exerc}[example]{Esercizi Svolti}
+
+%Commandi di Formattazione
+\newcommand{\noi}{\noindent}
+\newcommand{\note}{\noindent {\quad \bf \underline{Osservazione:}} \quad}
+\newcommand{\eg}{\noindent {\bf \underline{Esempio:}} \quad}
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{\bfemph{#1}}
+
+%Number Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+%Shortcuts
+\newcommand{\then}{\ensuremath{\Rightarrow}}
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{se } #2 \\
+			#3 & \mbox{se } #4
+		\end{array}
+	\right.
+}
+
+%Vectors
+\renewcommand{\i}{\vu{i}}
+\renewcommand{\j}{\vu{j}}
+\renewcommand{\k}{\vu{k}}
+\renewcommand{\a}{\va{a}}
+\renewcommand{\b}{\va{b}}
+\renewcommand{\c}{\va{c}}
+\renewcommand{\v}{\va{v}}
+\renewcommand{\u}{\va{u}}
+\newcommand{\s}{\va{s}}
+\renewcommand{\t}{\va{t}}
+\newcommand{\verst}{\vu{t}}
+\newcommand{\versr}{\vu{r}}
+\renewcommand{\r}{\va{r}}
+\newcommand{\tauvs}{\vu{\tau}}
+\newcommand{\tauvt}{\va{\tau}}
+\newcommand{\normvs}{\vu{n}}
+\newcommand{\N}{\va{N}}
+\newcommand{\g}{\va{g}}
+\newcommand{\F}{\va{F}}
+\newcommand{\f}{\va{f}}
+\newcommand{\M}{\va{M}}
+\renewcommand{\l}{\va{l}}
+\newcommand{\p}{\va{p}}
+\renewcommand{\P}{\va{P}}
+\renewcommand{\L}{\va{L}}
+
+
+\renewcommand{\c}{\overline{c}}
+\title{Introduzione - Termodinamica}
+\author{Roberto Gargiulo}
+\date{Ultimo Aggiornamento: \today}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Termodinamica}
+\subsection{Termologia}
+Lo studio della termodinamica si basa sulla possibilità di raggiungere un'equilibrio, enunciata dal \textbf{principio zero}. Gli equilibri termodinamici compongono uno \textbf{spazio termodinamico} descritto da un certo numero di variabili (dette \textbf{grandezze termodinamiche}), tra le quali:
+\begin{enumerate}
+    \item Pressione
+    \item Temperatura
+    \item Volume
+    \item Energia Interna
+    \item Entropia
+\end{enumerate}
+\begin{defn}[Equilibrio Termodinamico]
+L'equilibrio di un sistema termodinamico è costituito da tre equilibri che il sistema deve raggiungere:
+\begin{enumerate}
+    \item \textbf{Equilibrio Meccanico}, a cui corrisponde l'assenza di movimento macroscopico ed è caratterizzato dalla pressione, si raggiunge quando la pressione esterna è uguale a quella interna.
+    \item \textbf{Equilibrio Chimico}, a cui corrisponde l'assenza di reazioni chimiche e trasformazioni di fase, a cui corrisponde il potenziale chimico, si raggiunge quando il potenziale chimico dei reagienti $\mu_A$ è uguale a quello dei prodotti $\mu_B$.
+    \item \textbf{Equilibrio Termico}, quando la temperatura dell'ambiente e quella del sistema sono le stesse.
+\end{enumerate}
+\end{defn}
+Queste tre grandezze sono \textbf{intensive} in quanto non dipendono dalle dimensioni del sistema. Le grandezze che dipendono dalle dimensioni sono dette \textbf{estensive} (additive) e includono massa, volume, entropia ed energia interna.
+L'equazione di stato di un sistema termodinamico è un'equazione del tipo:
+\[t=t(p,V)\quad p=p(t,V)\]
+Ossia una relazione tra pressione, volume e temperatura.
+\begin{defn}[Varianza]
+La varianza di un sistema termodinamico corrisponde al numero di gradi di libertà di quel sistema, ossia il numero di grandezze necessario a descriverlo. 
+\end{defn}
+Utilizzando la \textbf{Regola di Gibbs} possiamo calcolare la varianza di un sistema come segue:
+\begin{equation}
+    \boxed{v=n-f+2}
+\end{equation}
+Dove n è il numero di componenti (sostanze) ed f il numero di fasi. Quando $v=0$ il sistema si trova nel suo \textbf{punto triplo}, ossia un punto particolare dello spazio termodinamico determinato da specifiche coordinate di volume, pressione e temperatura. 
+
+\subsection{Calorimetria e Principio Zero}
+
+Consideriamo la quantità di calore infinitesima fornita ad un corpo che non sta subendo cambiamenti di fase, possiamo definire la grandezza \textbf{capacità termica} come:
+\[C=\dv{Q}{t}\quad\dif t\neq 0\]
+Si osserva empiricamente che tale grandezza è proporzionale alla massa e quindi al numero di moli secondo una costante detto \textbf{calore specifico} (di una sostanza) o calore specifico molare rispettivamente:
+\[C=mc=n\overline{c}\]
+Inoltre possiamo definire il \textbf{calore latente} per un sistema che sta subendo un cambiamento di fase:
+\[\lambda=\dv{Q}{m}\]\\
+
+
+
+\end{document}

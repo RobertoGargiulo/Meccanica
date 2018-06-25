@@ -1,0 +1,281 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={182mm,257mm},
+ left=14mm,
+ top=20mm,
+ }
+ \usepackage[utf8]{inputenc}
+ \usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    citecolor=green
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+%Theorem Environments
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{property}{Proprietà}[section]
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{prop}[defn]{Proposizione}
+
+%Commandi di Formattazione
+\newcommand{\noi}{\noindent}
+\newcommand{\note}{\noindent {\quad \bf \underline{Osservazione:}} \quad}
+\newcommand{\eg}{\noindent {\bf \underline{Esempio:}} \quad}
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{\bfemph{#1}}
+
+%Number Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+%Shortcuts
+\newcommand{\then}{\ensuremath{\Rightarrow}}
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{se } #2 \\
+			#3 & \mbox{se } #4
+		\end{array}
+	\right.
+}
+
+%Vectors
+\renewcommand{\i}{\vu{i}}
+\renewcommand{\j}{\vu{j}}
+\renewcommand{\k}{\vu{k}}
+\renewcommand{\a}{\va{a}}
+\renewcommand{\b}{\va{b}}
+\renewcommand{\c}{\va{c}}
+\renewcommand{\v}{\va{v}}
+\renewcommand{\u}{\va{u}}
+\newcommand{\s}{\va{s}}
+\renewcommand{\t}{\va{t}}
+\newcommand{\verst}{\vu{t}}
+\newcommand{\versr}{\vu{r}}
+\renewcommand{\r}{\va{r}}
+\newcommand{\tauvs}{\vu{\tau}}
+\newcommand{\tauvt}{\va{\tau}}
+\newcommand{\normvs}{\vu{n}}
+\newcommand{\normvt}{\va{N}}
+\newcommand{\g}{\va{g}}
+
+
+
+
+
+\title{Introduzione}
+\author{Roberto Gargiulo}
+\date{Today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+
+\section{Idee Fondamentali della Fisica}
+
+\subsection{Grandezze Fisiche e la loro Misura}
+
+\begin{defn}
+Una \textbf{Grandezza Fisica} si definisce \textbf{operativamente} con una procedure di misurazione che associa ad essa un numero. \\
+Si possono distinguere \textbf{Misure Empiriche}, associate ad uno strumento, e \textbf{Misure Assolute}, indipendenti dallo strumento. 
+\end{defn}
+
+\begin{defn}
+La \textbf{Grandezza Misurata} di un fenomeno è una classe di equivalenza di cui si sceglie un \textbf{campione} che fornisce l'unità di misura della grandezza.
+\end{defn}
+\note Non è necessario stabilire campioni per ogni grandezza, in quanto grazie alle relazione matematiche tra le varie grandezze ci si può ricondurre ad un numero finito di grandezze "fondamentali". Un sistema formato da un certo numero di grandezze fondamentali è detto un \textbf{Sistema di Misura}.
+
+Generalmente si fa uso del SI (Sistema Internazionale di Misura) che include 7 grandezze fondamentali:
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+\hline
+Grandezza & Unità di Misura & Simbolo\\
+\hline
+Intervallo di Tempo & secondo & s\\
+Lunghezza & metro & m\\
+Massa & chilogrammo	& kg\\
+Intensità di Corrente Elettrica	& ampere & A\\
+Intensità Luminosa	& candela &	cd\\
+Quantità di Sostanza & mole & mol\\
+Temperatura Termodinamica &	kelvin & K\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Calcolo Dimensionale}
+Il Calcolo Dimensionale si può riassumere in questi tre principi:
+\begin{enumerate}
+    \item La Somma tra Grandezze Equidimensionali produce una grandezza equidimensionale alle prime due
+    \item Il Prodotto tra due Grandezze è produce una grandezze avente come dimensione il prodotto delle prime due. In particolare se le due grandezze hanno dimensioni elevate a una certa potenza in comune, la grandezza ha dimensioni uguali alla somma delle potenze delle dimensioni delle due grandezze.
+    \item Gli argomenti delle funzioni devono essere adimensionali.
+\end{enumerate}
+
+\section{Geometria dei Vettori}
+
+\begin{defn}
+Un \textbf{Vettore} dello Spazio Geometrico è una classe di equipollenza formata da segmenti orientati.
+\end{defn}
+
+\begin{defn}
+Il \textbf{Vettore Posizione} di un corpo che si trova nel punto P è un vettore geometrico applicato nell'origine del riferimento che collega l'origine al punto P. Esso è identificato (dato un riferimento) da una terna (coppia) di numeri reali.
+\end{defn}
+
+\begin{prop}
+Nel Piano ha senso scegliere due possibili sistemi di riferimento:
+\begin{enumerate}
+    \item Un Sistema di Assi Cartesiani, che identifica un punto con la loro distanza (orientata) rispetto ai due assi (ortogonali, che si intersecano in un punto detto \textbf{origine}).
+    \item Un Sistema Polare, formato da un punto detto \textbf{origine} è una semiretta avente come vertice tale punto detta \textbf{asse polare}, che identifica unicamente (ad eccezione dell'origine) un punto del piano tramite la distanza dall'origine e l'angolo formato tra l'asse polare e la semiretta originatasi nell'origine e passante per il punto.
+\end{enumerate}
+\end{prop}
+\begin{property}
+\hypertarget{formulecoordinate}{
+Le \textbf{Formule di Cambiamento di Coordinate} tra un Sistema Cartesiano e uno di coordinate polari sono date dai sistemi}:
+\[\left\{
+		\begin{array}{l}
+			x=r\cos\Phi  \\
+			y=r\sin\Phi  \\
+		\end{array}
+	\right.\iff
+	\left\{
+		\begin{array}{l}
+			r=\sqrt{x^2+y^2}  \\
+			\Phi=\arctan\left(\frac{y}{x}\right)\,\vee\,\pm\frac{\pi}{2}  \\
+		\end{array}
+	\right.\]
+\end{property}
+
+\begin{property}
+La \textbf{Traslazione} è un'isometria definita dal seguente sistema:
+\[\left\{
+		\begin{array}{l}
+			x'=x+u_x  \\
+			y'=y+u_y  \\
+		\end{array}
+	\right.\quad\text{dove}\, \va{u}=(u_x,u_y)\,\text{è il vettore di traslazione}\]
+\end{property}
+
+\begin{property}
+La \textbf{Rotazione} centrata nell'origine è una trasformazione definita dalla seguente matrice ortogonale (sistema associato):
+\[\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\\\end{pmatrix}\iff\left\{
+\begin{array}{l}
+    x'=\cos\theta-y\sin\theta   \\
+    y'=x\sin\theta+y\cos\theta   \\
+\end{array}\right.\]
+\end{property}
+
+\note Il Vettore Posizione ha modulo invariante rispetto alle rotazioni centrate nell'origine ma cambia nelle traslazioni.
+\note I Vettori non applicati nell'origine hanno moduli invarianti sia nelle rotazioni che nelle traslazioni. Tale è il caso del \textbf{Vettore Spostamento}.
+
+\begin{defn}
+Il \textbf{Vettore Spostamento} è il vettore dato dalla differenza tra due vettori posizione.
+\end{defn}
+
+\subsection{Operazioni tra Vettori}
+
+\begin{defn}
+L'\textbf{addizione} tra vettori geometrici è data dal metodo punta-coda (oppure equivalentemente il metodo del parallelogramma):
+\[
+\begin{tikzpicture}
+\draw[->,thick](0,0) -- (2,3);
+\draw[->,thick](2,3) -- (5,1);
+\draw[->,thick,blue](0,0) -- (5,1);
+\end{tikzpicture}
+\]
+Oppure in componenti:
+\[\va{a}+\va{b}=(a_x+b_x,a_y+b_y,a_z+b_z)\]
+Notiamo che essa è commutativa e associativa.
+\end{defn}
+
+\begin{defn}
+Il \textbf{prodotto esterno} tra vettore e scalare conserva la sua direzione, ed è tale che il modulo del vettore così ottenuto è uguale al modulo del vettore iniziale moltiplicato per il valore assoluto dello scalare. Si può definire in componenti come segue:
+\[m\va{a}=(ma_x,ma_y,ma_z)\]
+Anche tale operazione è commutativa e associativa e inoltre gode della proprietà distributiva rispetto all'addizione.
+\end{defn}
+
+\begin{defn}
+Un \textbf{versore} è un vettore di modulo 1.
+\end{defn}
+\note Il vettore \(\vu{a}=\frac{\va{a}}{|\va{a}|}\) è un versore.
+
+\begin{defn}
+Il \textbf{Prodotto Scalare} si definisce come segue:
+\[\va{a}\vdot\va(b)=|a||b|\cos\theta\]
+Oppure in componenti:
+\[\va{a}\vdot\va{b}=a_xb_x+a_yb_y+a_zb_z\]
+In quanto:
+\[\begin{array}{l}
+    \vu{i}\vdot\vu{i}=0\\
+    \vu{j}\vdot\vu{j}=0\\
+    \vu{k}\vdot\vu{k}=0\\
+\end{array}\quad\va{a}\vdot\va{b}=(a_x\i+a_y\j+a_z\k)\vdot(b_x\i+b_y\j+b_z\k)\]
+Il prodotto scalare è commutativo e distributivo rispetto alla somma.
+\end{defn}
+\begin{property}
+Il Prodotto Scalare è invariante rispetto alle rotazioni centrate nell'origine.
+\end{property}
+
+\begin{defn}
+\textbf{Componente Ortogonale} di un vettore $\b$ lungo un altro vettore $\b$ è il numero $\b_a=\b\vdot\vu{a}$
+\end{defn}
+
+\begin{thm}[Teorema di Carnot]
+Dati \(\a,\b,\c\) tali che \(\a+\b=\c\) allora risulta 
+\[|\c|^2=|\a^2|+|\b|^2+|\a||\b|\cos\theta\]
+\end{thm}
+
+\begin{defn}
+Il \textbf{Prodotto Vettoriale} è un'operazione tra vettori tridimensionali che restituisce un vettore tale che:
+\begin{enumerate}
+    \item Verso e Direzione di $\a\times\b$ sono individuati dalla regola della mano destra.
+    \item \(|\a\times\b|=|\a||\b|\sin\theta\)
+\end{enumerate}
+Geometricamente, immaginando i vettori $\a,\b$ come spostamenti, allora $|\a\times\b|$ è l'area del parallelogramma che ha per lati $|\a|,|\b|$ (infatti le sue altezze sono $|\a|\sin\theta,|\b|\sin\theta$.
+Il Prodotto Scalare gode delle seguenti proprietà:
+\begin{enumerate}
+    \item Il prodotto vettoriale di vettori paralleli è il vettore nullo e in particolare $\i\times\i=\j\times\j=\k\times\k=\va{0}$.
+    \item Il prodotto vettoriale è anticommutativo.
+    \item Il prodotto vettoriale gode della proprietà distributiva rispetto all'addizione.
+\end{enumerate}
+
+
+Come regola di calcolo, note le componenti dei vettori, è possibile calcolare il prodotto vettoriale come il determinante della seguente matrice:
+\[\begin{vmatrix}\i&\j&\k\\ a_x&a_y&a_z\\b_x&b_y&b_z\\ \end{vmatrix}=(a_yb_z-a_zb_y)\i+(a_zb_x-a_xb_z)\j+(a_xb_y-a_yb_x)\k\]
+\end{defn}
+
+\begin{defn}
+Il \textbf{Triplo Prodotto Scalare} di tre vettori non nulli è il numero $(\a\times\b)\vdot\c$ tale che $|(\a\times\b)\vdot\c|$ è il volume del parallelepipedo che ha per dimensioni i tre vettori. Si verifica che scambiando ciclicamente i tre vettori, il prodotto non cambia:
+\[(\a\times\b)\vdot\c=(\c\times\a)\vdot\b=(\b\times\c)\vdot\a\]
+Mentre uno scambio non ciclico fa cambiare di segno.
+Si dimostra che:
+\[(\a\times\b)\vdot\c=\begin{vmatrix}c_x&c_y&c_z\\ a_x&a_y&a_z\\b_x&b_y&b_z\\ \end{vmatrix}\]
+\end{defn}
+
+\begin{defn}
+Il \textbf{Triplo Prodotto Vettoriale} è il vettore $(\a\times\b)\times\c$ che gode delle seguenti identità:
+\[(\a\times\b)\times\c=(\a\vdot\c)\vdot\b-(\b\vdot\c)\vdot\a\]
+\[\a\times(\b\times\c)=(\a\vdot\c)\vdot\b-(\a\vdot\b)\vdot\c\]
+\end{defn}
+
+
+\end{document}

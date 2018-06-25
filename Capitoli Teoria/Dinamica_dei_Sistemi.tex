@@ -1,0 +1,375 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={182mm,257mm},
+ left=14mm,
+ top=20mm,
+ }
+ \usepackage[utf8]{inputenc}
+ \usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz} 
+\usepackage{graphicx}
+\graphicspath{ {Immagini/} }
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    citecolor=green
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+%Theorem Environments
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{property}{Proprietà}[section]
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{prop}[defn]{Proposizione}
+\newtheorem{example}{Esempi}[subsection]
+\newtheorem{exerc}[example]{Esercizi Svolti}
+
+%Commandi di Formattazione
+\newcommand{\noi}{\noindent}
+\newcommand{\note}{\noindent {\quad \bf \underline{Osservazione:}} \quad}
+\newcommand{\eg}{\noindent {\bf \underline{Esempio:}} \quad}
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{\bfemph{#1}}
+
+%Number Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+%Shortcuts
+\newcommand{\then}{\ensuremath{\Rightarrow}}
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{se } #2 \\
+			#3 & \mbox{se } #4
+		\end{array}
+	\right.
+}
+
+%Vectors
+\renewcommand{\i}{\vu{i}}
+\renewcommand{\j}{\vu{j}}
+\renewcommand{\k}{\vu{k}}
+\renewcommand{\a}{\va{a}}
+\renewcommand{\b}{\va{b}}
+\renewcommand{\c}{\va{c}}
+\renewcommand{\v}{\va{v}}
+\renewcommand{\u}{\va{u}}
+\newcommand{\s}{\va{s}}
+\renewcommand{\t}{\va{t}}
+\newcommand{\verst}{\vu{t}}
+\newcommand{\versr}{\vu{r}}
+\renewcommand{\r}{\va{r}}
+\newcommand{\tauvs}{\vu{\tau}}
+\newcommand{\tauvt}{\va{\tau}}
+\newcommand{\normvs}{\vu{n}}
+\newcommand{\N}{\va{N}}
+\newcommand{\g}{\va{g}}
+\newcommand{\F}{\va{F}}
+\newcommand{\f}{\va{f}}
+\newcommand{\M}{\va{M}}
+\renewcommand{\l}{\va{l}}
+\newcommand{\p}{\va{p}}
+\renewcommand{\P}{\va{P}}
+\renewcommand{\L}{\va{L}}
+
+\title{Dinamica dei Sistemi di Corpi}
+\author{Roberto Gargiulo}
+\date{Ultimo Aggiornamento: \today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduzione ai Sistemi di Corpi Discreto}
+
+Un \textbf{sistema di corpi} si definisce come segue:
+\begin{defn}[Sistema di Corpi a Massa Concentrata]
+una porzione dello spazio che include un certo numero n di corpi.
+\end{defn}
+Notiamo che sia le forze (interazioni esercitata tra i corpi interni al sistema) che i momenti interni si oppongono e sono diretti lungo la retta congiungente:
+\[\f_{ij}=-\f{ji}\]
+\[\M_{Oi}=\r_i\times\f_{ij}=-\r_j\times\f_{ji}=-\M_{Oj}\]
+
+L'equazione del moto del corpo i-esimo è data quindi da:
+\begin{equation}
+    m_i\a_i=\sum_A\F_{iA}+\sum_j\f_{ij}=\F_i^{(e)}+\F_i^{(i)}
+\end{equation}
+Quindi il sistema è definito da n equazioni vettoriali (ossia 3n equazioni scalari).
+
+\paragraph{Proprietà Globali di un Sistema}
+Definiamo quindi alcune grandezze utili per analizzare il comportamento di un sistema di corpi:
+\begin{defn}[Quantità di Moto Totale]
+\[\P=\sum_im_i\v_i=\sum_i\p_i\]
+\end{defn}
+\begin{defn}[Momento Angolare Totale]
+\[\L_O=\sum_i\r_i\times\p_i=\sum_i\l_{Oi}\]
+\end{defn}
+\begin{defn}[Energia Cinetica Totale]
+\[K=\sum_i\frac{1}{2}m_iv_i^2\]
+\end{defn}
+\begin{defn}[Massa Totale del Sistema]
+\[M=\sum_im_i\]
+\end{defn}
+Notiamo che possiamo dividere la quantità di moto totale per la massa totale, ottenendo una "media pesata" delle velocità dei corpi:
+\[\v_C=\frac{\P}{M}=\frac{\sum_im_i\v_i}{\sum_im_i}=\sum_i\frac{m_i}{M}\v_i=\sum_i\pi_i\v_i\quad\sum_i\pi_i=1\]
+Segue che:
+\[\v_C=\sum_i\pi_i\dv{\r_i}{t}=\dv{\sum_i\pi_i\r_i}{t}\dv{\r_C}{t}\]
+Ha senso quindi definire il centro di massa come segue:
+\begin{defn}[Centro di Massa]
+\[\r_C=\sum_i\frac{m_i}{M}\r_i\]
+\end{defn}
+\section{I e II Equazione Cardinale}
+\begin{property}[I Equazione Cardinale]
+Consideriamo un sistema di corpi, allora la derivata della quantità di moto totale vale:
+\begin{equation}
+\begin{split}
+    \dv{\P}{t}=M\dv{\v_C}{t}&=M\a_C=\dv{\sum_im_i\v_i}{t}=\sum_im_i\dv{\v_i}{t}=\sum_im_i\a_i=\sum_i\left(\F_i^{(e)}+\F_i^{(i)}\right)=\sum_iF_i^{(e)}=\F^{(e)}\then \boxed{\dv{\P}{t}=\F^{(e)}}
+\end{split}    
+\end{equation}
+Dove:
+\[\sum_i\F_i^{(i)}=\sum_{i,j=1}^n\f_{ij}=-\sum_{i,j}\f_{ji}=-\sum_{i,j}\f_{ij}\iff \sum_{i,j}\f_{ij}=0\]
+\end{property}
+\note La I Equazione Cardinale afferma che il moto del centro di massa è determinato esclusivamente dalle forze esterne, in quanto quelle interne non hanno effetto. 
+Un sistema in cui la quantità di moto totale si conserva ha particolare importanza, definiamo come segue un tale sistema di corpi:
+\begin{defn}[Sistema Isolato]
+Un \textbf{sistema isolato} è un sistema tale che $\F^{(e)}=0$, ossia la quantità di moto totale si conserva e quindi il centro di massa si muove di moto rettilineo uniforme.
+\end{defn}
+\begin{property}[II Equazione Cardinale]
+Consideriamo un sistema di corpi discreto, allora la derivata del momento angolare totale vale:
+\begin{equation}
+\begin{split}
+\dv{\L_O}{t}&=\dv{}{t}\left[\sum_i\r_i\times(m_i\v_i)\right]=\\
+&=\sum_i\left[\dv{\r_i\times(m_i\v_i)}{t}\right]=\sum_i\left[\dv{(\r_i}{t}\times(m_i\v_i))+\r_i\times m_i\dv{\v_i}{t}\right]=\\
+&=\sum_i\left[\v_i\times(m_i\v_i)+\r_i\times m_i\a_i\right]=\sum_i\left[\r_i\times(m_i\a_i)\right]=\\
+&=\sum_i\left[\r_i\times\left(\F_i^{(e)}+\sum_j\f_{ij}\right)\right]=\sum_i\left(\r_i\times\F_i^{(e)}\right)+\sum_{i}\left(\r_i\times\sum_j\f_{ij}\right)=\\
+&=\sum_i\left(\r_i\times\F_i^{(e)}\right)=\M_O^{(e)}\then \boxed{\dv{\L_O}{t}=\M_O^{(e)}}
+\end{split}
+\end{equation}
+Dove:
+\begin{equation}
+\begin{split}
+    \sum_i\left(\r_i\times\sum_j\f_{ij}\right)&=\sum_{i,j}\r_i\times\f_{ij}=\sum_{i,j}\r_j\times\f_{ji}=\sum_{i,j}\r_j\times(-\f_{ij})\then\\ 
+    \then 2\sum_i\left(\r_i\times\sum_j\f_{ij}\right)=&\sum_{i,j}(\r_i-\r_j)\times\f_{ij}=0\quad\quad (\r_i-\r_j)\parallel\f_{ij}
+\end{split}
+\end{equation}
+\end{property}
+\begin{property}[La Variazione di Energia Cinetica]
+La variazione di energia cinetica del centro di massa vale:
+\[\Delta K=L^{(e)}+L^{(int)}\]
+Il lavoro infinitesimo vale invece:
+\begin{equation}
+    \dd L^{(e)}=\sum_i\left(\F_i^{(e)}\dd\r_i\right)\quad\dd L^{(int)}=\sum_{i,j}\f_{ij}\dd\r_i\then
+\end{equation}
+\begin{equation}
+\begin{split}
+    \then\dd L&=\dd L^{(e)}+\dd L^{(int)}=\sum_i\left[\left(\F_i^{(e)}+\sum_j\f_{ij}\right)\dd\r_i\right]=\\
+    &=\sum_i\F_i\dd\r_i=\sum_i\dd K_i=\dd\sum_iK_i=\dd K\iff L=\Delta K
+\end{split}
+\end{equation}
+Calcoliamo quanto vale il lavoro delle forze interne sul corpo i-esimo:
+\begin{equation}
+\begin{split}
+    \dd L^{(int)}&=\sum_{i,j}f_{ij}\dd\r_i=\sum_{i,j}\f_{ji}\dd\r_j=\\
+    &=-\sum_{i,j}f_{ij}\dd\r_j\then 
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+    \then 2\dd L^{(int)}=&\sum_{i,j}\f_{ij}(\dd\r_i-\dd\r_j)=\sum_{i,j}\f_{ij}\dd(\r_i-\r_j)=\\
+    &=\sum_{i,j}\sigma_{ij}(\r_i-\r_j)\dd(\r_i-\r_j)=\sum_{i,j}\frac{1}{2}\sigma_{ij}\dd|\r_i-\r_j|^2=\\
+    =\frac{1}{2}\sum_{i,j}\sigma_{ij}\dd D_{ij}
+\end{split}    
+\end{equation}
+\note Possiamo esprimere l'interazione $\f_{ij}$ tra due corpi interni al sistema come il prodotto tra una costante $\sigma_{ij}$ e il vettore congiungente i due corpi (ossia $\r_i-\r_j$). Inoltre poniamo $D_{ij}=|\r_i-\r_j|^2$. Se questa quantità è costante allora la distanza tra i corpi non cambia, questo tipo di sistema è detto \textbf{corpo rigido}.
+\end{property}
+\paragraph{Sistema a due Corpi}
+Il sistema a due corpi si può risolvere riducendo il sistema ad un solo corpo, e utilizzando la \textbf{massa ridotta del sistema}:
+\begin{equation}
+    \frac{1}{\mu}=\frac{1}{m_1}+\frac{1}{m_2}\then\boxed{\mu=\frac{m_1m_2}{m_1+m_2}}
+\end{equation}
+Impostiamo le equazioni del moto per i due corpi:
+\begin{equation}
+\left\{\begin{array}{l}
+    m_1\a_1=\F_1^{(e)}+\f_{12}=\F_1^{(e)}+\f  \\
+    m_2\a_2=\F_2^{(e)}+\f_{21}=\F_2^{(e)}-\f 
+\end{array}\right.\then m_1\a_1+m_2\a_2=\F_1^{(e)}+\F_2^{(e)}=\F^{(e)}=M\a_C=(m_1+m_2)\a_C\then
+\end{equation}
+\begin{equation}
+    m_1\a_1+m_2\a_2=(m_1+m_2)\a_C\quad \a_1=\frac{\F_1^{(e)}}{m_1}+\frac{\f}{m_1}\quad \a_2=\frac{\F_2}{m_2}-\frac{\f}{m_2}
+\end{equation}
+Otteniamo quindi:
+\begin{equation}
+    \dv[2]{(\r_1-\r_2)}{t}=\dv[2]{\r_{12}}{t}=\a_{12}=\a_1-\a_2=\frac{\F_1}{m_1}-\frac{\F_2}{m_2}+\left(\frac{1}{m_2}+\frac{1}{m_2}\right)\then \mu\a_{12}=\frac{m_2}{m_1+m_2}\F_1-\frac{m_1}{m_1+m_2}\F_2+\f 
+\end{equation}
+Dove: \[\f=\f(\r_1-\r_2)\]
+Ossia la forza con cui interagiscono i due corpi dipende dalla distanza relativa tra i corpi, non quella assoluta. 
+\paragraph{Sistema Isolato a Due Corpi}
+Quando il sistema è isolato otteniamo le seguenti equazioni differenziali:
+\begin{equation}
+\left\{\begin{array}{l}
+    \mu\ddot{\r}_{12}=\f(\r_{12}) \\
+    M\ddot{\r}_C=0
+\end{array}
+\right.
+\end{equation}
+Da cui le soluzioni:
+\begin{equation}
+\left\{\begin{array}{l}
+    \r_{12}(t)=\r_1(t)-\r_2(t)  \\
+     \r_C(t)=\r_{C0}+\v_{C0}t=\frac{m_1\r_1+m_2\r_2}{m_1+m_2} 
+\end{array}\right.
+\end{equation}
+Da cui possiamo ricavare l'espressione di $\r_1,\r_2$ in funzione di t.
+\paragraph{Sistema del Centro di Massa}
+Il Sistema del centro di Massa è il sistema di riferimento più comodo per la maggior parte dei casi. È un sistema centrato nel centro di massa e tale che il centro di massa sia istantaneamente fermo ma tale che il sistema si muova insieme al centro e sia comunque inerziale, fissando l'orientamento rispetto alle stelle fisse. Altre caratteristiche rilevanti del sistema del centro di massa sono:
+\begin{align*}
+    \sum_im_i\r_i=0\\
+    \sum_im_i\v_i=\va{P'}=0
+\end{align*}
+Infatti:
+\begin{equation}
+\begin{split}
+    \sum_im_i\v_i'&=\sum_im_i(\v_i-\v_c)=\sum_im_i\v_i-\sum_im_i\frac{\sum_jm_j\v_j}{\sum_im_i}=\\
+    &=\sum_im_i\v_i-\sum_jm_j\v_j=\va{P}-\va{P}=0
+\end{split}
+\end{equation}
+
+\section{I e II Teorema di Konig - Dinamica nei Sistemi nei Sistemi di Riferimento}
+\paragraph{II Teorema di König}
+Consideriamo un sistema inerziale K e un sistema in moto rispetto a K detto K', allora la velocità rispetto a K del corpo i-esimo di un sistema di corpi si può calcolare come:
+\[\v_i=\v_i'+\va{V}\]
+Dove $\va{V}$ è la velocità di K' rispetto a K. Pertanto possiamo esplicitare l'energia cinetica del sistema rispetto a K come:
+\begin{equation}
+\begin{split}
+    K&=\frac{1}{2}\sum_i\v_i^2=\frac{1}{2}\sum_im_i(\v_i'+\va{V})^2=\\
+    &=\frac{1}{2}\sum_im_iv_i'^2+\frac{1}{2}\sum_im_iV^2+\frac{1}{2}\sum_im_i\v_i'\va{V}=\\
+    &=\sum_i\frac{1}{2}m_iv_i'^2+\left(\frac{1}{2}\sum_im_i\right)V^2+\left(\frac{1}{2}\sum_im_i\v_i'\right)\va{V}=\\
+    &=\boxed{K'+\frac{1}{2}MV^2+\va{P'}\cdot\va{V}}
+\end{split}    
+\end{equation}
+Scegliendo come sistema il sistema del centro di massa C otteniamo:
+\begin{equation}
+    \va{P'}=0\then \boxed{K=K'+\frac{1}{2}Mv_C^2}
+\end{equation}
+Che è proprio il II Teorema di König.
+
+
+\paragraph{I Teorema di König}
+Consideriamo ora il Momento Angolare rispetto a K utilizzando i valori di posizione e velocità in un sistema K' centrato in $\Omega$; otteniamo quindi:
+\[\left\{\begin{array}{l}
+    \r_i=\r_i'+\r_{\Omega}   \\
+     \v_i=\v_i'+\v_{\Omega}
+\end{array}\right.\]
+Allora il momento angolare rispetto al centro di K vale:
+\begin{equation}
+\begin{split}
+    \L_O&=\sum_i\r_i\times\v_i=\sum_im_i(\r_i'+\r_{\Omega})\times(\v_i'+\v_{\Omega})=\\
+    &=\sum_im_i\r_i'\times\v_i'+\sum_im_i\r_i'\times\v_{\Omega}+\sum_im_i\r_{\Omega}\times\v_i'+\sum_im_i\r_{\Omega}\times\v_{\Omega}=\\
+    &=\L_{\Omega}'+\left(\sum_im_i\r_i'\right)\times\v_{\Omega}+\r_{\Omega}\times\left(\sum_im_i\v_i'\right)+\r_{\Omega}\times(M\v_{\Omega})=\\
+    &=\L_{\Omega}'+\left(\frac{\sum_im_i}{\sum_im_i}\sum_im_i\r_i\right)\times\v_{\Omega}+\r_\Omega\times\P'+\r_{\Omega}\times M\v_{\Omega}=\\
+    &=\L_{\Omega}'+\left(M\frac{\sum_im_i\r_i}{\sum_im_i}\right)\times\v_{\Omega}+\r_\Omega\times\P'+\r_{\Omega}\times M\v_{\Omega}=\\
+    &=\boxed{\L_{\Omega}'+M\r_C'\times\v_{\Omega}+\r_{\Omega}\times\P'+\r_{\Omega}\times M\v_{\Omega}}
+\end{split}
+\end{equation}
+Se $\Omega=C$ allora otteniamo:
+\[\v_{\Omega}=\v_C\quad\r_{\Omega}=\r_C\then \r_C'=0\quad\v_C'=0\]
+Da cui:
+\begin{equation}
+    \L_O=\L_C'+\r_C'\times(\M\v_C)+\r_C\times\P'+\r_C\times(M\v_c)=\boxed{\L_C'+\r_C\times\P}
+\end{equation}
+Che è proprio il I Teorema di König.
+\paragraph{Cambiamento di Polo}
+La formula di cambiamento di polo per il momento angolare si ottiene considerando solo le posizioni rispetto al sistema mobile:
+\begin{equation}
+\begin{split}
+    \L_O&=\sum_im_i(\r_i'+\r_{\Omega})\times\v_i=\sum_im_i\r_i'\times\v_i+\sum_im_i\r_{\Omega}\times\v_i=\\
+    &=\boxed{\L_{\Omega}+\r_{\Omega}\times\P}
+\end{split}
+\end{equation}
+Se $\Omega=C$ allora otteniamo anche:
+\[\L_O=\L_C+\r_C\times\P=\L_C'+\r_C\times\P\]
+Ossia $\L_C=\L_C'$, due grandezze fisicamente diverse ma numericamente uguali per natura del centro di massa.
+\paragraph{Generalizzazione della II Equazione Cardinale}
+Deriviamo la formula di cambiamento di polo per il momento angolare:
+\begin{equation}
+\begin{split}
+    \M_O&=\dv{\L_O}{t}=\dv{\L_{\Omega}}{t}+\dv{\r_{\Omega}}{t}\times\P+\r_{\omega}\times\dv{\P}{t}=\\
+    &=\dv{\L{\Omega}}{t}+\v_{\Omega}\times\P+\r_{\Omega}\times\F^{(e)}\then\\
+    \then \dv{\L_{\Omega}}{t}&=\dv{\L_O}{t}-\r_{\Omega}\times\F^{(e)}-\v_{\Omega}\times\P=\\
+    &=\M_O-\r_{\Omega}\times\F^{(e)}-\v_{\Omega}\times\P=\\
+    &=\sum_i\left[\r_i\times\F_i^{(e)}-\r_{\Omega}\times\F_i^{(e)}\right]-\v_{\Omega}\times\P=\\
+    &=\sum_i\left[(\r_i-\r_{\Omega})\times\F_i^{(e)}\right]-\v_{\Omega}\times\P=\\
+    &=\sum_i\r_i'\times\F_i^{(e)}-\v_{\Omega}\times\P=\boxed{\M_{\Omega}^{(e)}-\v_{\Omega}\times\P}
+\end{split}
+\end{equation}
+Scegliendo $\Omega=O$ otteniamo $\v_{\Omega}=0$ mentre scegliendo $\Omega=C$ otteniamo $\v_C\parallel\P$, ossia in entrambi i casi:
+\[\dv{\L_O}{t}=\M_O^{(e)}\quad\dv{\L_C}{t}=\M_C^{(e)}\]
+
+
+\paragraph{Esempio}
+Se $\F_i^{(e)}=m_i\g$ allora otteniamo:
+\[\dv{\P}{t}=\sum_i\F_i^{(e)}=\sum_im_i\g=M\g=M\a_c\iff \g=\a_C\]
+Ossia il centro di massa si muove come un proiettile nel caso in cui l'unica forza esterna al sistema sia la forza-peso. Inooltre:
+\[\M_O^{(e)}=\sum_i\r_i\times\F_i^{(e)}=\sum_i\r_i\times(m_i\g)=\sum_i(m_i\r_i)\times\g=M\r_c\times\g=\r_c\times(M\g)\]
+\paragraph{Coppie di Forze}
+Se $\F_1^{(e)}=-\F_2^{(e)}=\F$ allora il momento delle forze esterne agenti sul sistema è detto \textbf{momento di una coppia di forze}:
+\begin{equation}
+    \M_O^{(e)}=\r_1\times\F+\r_2\times(-\F)=(\r_1-\r_2)\times\F=\M^{(e)}
+\end{equation}
+Ossia il momento di una forza di coppie dipende solo dalla distanza relativa, detta \textbf{braccio}, e non dal polo/posizioni assolute.
+
+\section{I Sistemi Continui}
+I \textbf{sistemi continui} o a massa ridistribuita sono simili a quelli \textbf{discreti} (a massa concentrata) se non che al posto dei singoli corpi si considerano volumi infinitesimi $\dd V$ di massa $\dd M$ tali che:
+\[\int\dd V=V\quad\quad\int\dd M=M\]
+Da cui:
+\[\p=\int\dd\p=\int\dd(m\v)=\int_M\dd(m\v(\r,t))\]
+\[\L_O=\int\dd(m\r\times\v(\r,t))\]
+Questi integrali sono detti \textbf{integrali di volume} che si possono ricondurre a quelli di linea definendo la \textbf{densità}:
+\begin{defn}[Densità di Massa nel Punto $\r$ all'istante t]
+\begin{equation}
+    \rho(\r,t)=\dv{m}{V}
+\end{equation}
+\end{defn}
+\note La funzione di densità (locale) dipende anche dal modo in cui ripartiamo il sistema. Generalmente si preferisce un cubetto infinitesimo che ha tre lati orientati lungo gli assi ottenendo:
+\[\dd V=\dd x\dd y\dd z\]
+Da cui:
+\[\dd m=\rho(\r,t)\dd V=\rho(\r,t)\dd x\dd y\dd z\]
+Possiamo quindi ridurre la dipendenza della quantità di moto totale al solo tempo:
+\[\P=\int\v(\r,t)\dd m=\int\rho(\r,t)\v(\r,t)\dd V=\iiint_V\rho(x,y,z;t)\v(x,y,z;t)\dd x\dd y\dd z\]
+Ossia rendiamo la quantità di moto un integrale triplo che dipende dalla frontiera del sistema, ossia la sua forma.\\
+Possiamo inoltre definire la \textbf{densità media}:
+\begin{equation}
+    \overline{\rho}=\frac{M}{V}=\frac{\int_M\dd m}{\int_V\dd V}=\frac{\int_V\rho(\r,t)\dd V}{\int_V\dd V}
+\end{equation}
+Possiamo poi definire il \textbf{centro di massa} e la sua velocità:
+\begin{equation}
+    \r_C=\frac{1}{M}\int_M\r\dd m\quad\v_C=\frac{1}{M}\int\v(\r,t)\dd m
+\end{equation}
+Mentre in componenti:
+\begin{align*}
+    (\r_C)_x=\frac{1}{M}\int\rho(x,y,z)x\dd x\dd y\dd z\\
+    (\r_C)_y=\frac{1}{M}\int\rho(x,y,z)z\dd x\dd y\dd z\\
+    (\r_C)_z=\frac{1}{M}\int\rho(x,y,z)y\dd x\dd y\dd z\\
+\end{align*}
+
+
+
+
+\end{document}

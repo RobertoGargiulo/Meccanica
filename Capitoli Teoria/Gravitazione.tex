@@ -1,0 +1,192 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={182mm,257mm},
+ left=14mm,
+ top=20mm,
+ }
+ \usepackage[utf8]{inputenc}
+ \usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{tikz} 
+\usepackage{graphicx}
+\graphicspath{ {Immagini/} }
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    citecolor=green
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+
+%Theorem Environments
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{property}{Proprietà}[section]
+\newtheorem{defn}{Definizione}[section]
+\newtheorem{prop}[defn]{Proposizione}
+\newtheorem{example}{Esempi}[subsection]
+\newtheorem{exerc}[example]{Esercizi Svolti}
+
+%Commandi di Formattazione
+\newcommand{\noi}{\noindent}
+\newcommand{\note}{\noindent {\quad \bf \underline{Osservazione:}} \quad}
+\newcommand{\eg}{\noindent {\bf \underline{Esempio:}} \quad}
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}
+\renewcommand{\emph}[1]{\bfemph{#1}}
+
+%Number Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+%Shortcuts
+\newcommand{\then}{\ensuremath{\Rightarrow}}
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & \mbox{se } #2 \\
+			#3 & \mbox{se } #4
+		\end{array}
+	\right.
+}
+
+%Vectors
+\renewcommand{\i}{\vu{i}}
+\renewcommand{\j}{\vu{j}}
+\renewcommand{\k}{\vu{k}}
+\renewcommand{\a}{\va{a}}
+\renewcommand{\b}{\va{b}}
+\renewcommand{\c}{\va{c}}
+\renewcommand{\v}{\va{v}}
+\renewcommand{\u}{\va{u}}
+\newcommand{\s}{\va{s}}
+\renewcommand{\t}{\va{t}}
+\newcommand{\verst}{\vu{t}}
+\newcommand{\versr}{\vu{r}}
+\renewcommand{\r}{\va{r}}
+\newcommand{\tauvs}{\vu{\tau}}
+\newcommand{\tauvt}{\va{\tau}}
+\newcommand{\normvs}{\vu{n}}
+\newcommand{\N}{\va{N}}
+\newcommand{\g}{\va{g}}
+\newcommand{\F}{\va{F}}
+\newcommand{\f}{\va{f}}
+\newcommand{\M}{\va{M}}
+\renewcommand{\l}{\va{l}}
+\newcommand{\p}{\va{p}}
+\renewcommand{\P}{\va{P}}
+\renewcommand{\L}{\va{L}}
+
+\title{Appunti Lezioni}
+\author{Roberto Gargiulo}
+\date{Ultimo Aggiornamento: \today}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Lezioni di Meccanica II Semestre}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Campi Centrali e Momento Angolare - 6 Aprile}
+
+Si definisce \textbf{Campo Centrale} un Campo di Forze per cui, dato un centro O, la direzione della forza applicata in un qualunque punto dello spazio è sempre la congiungente tra quel punto e il centro O, tali forze possono essere sia repulsive che attrattive e si possono scrivere con la seguente formulazione:
+\begin{equation}
+    \boxed{\F(\r)=f(|\r|)\r}
+\end{equation}
+Un esempio tipico è la forza gravitazionale:
+\[\F_g(\r)=G\frac{mM}{|\r|^3}\r\then f(|\r|)=G\frac{mM}{|\r|^3}\]
+Il \textbf{momento di un vettore} rispetto ad un punto O si definisce come segue:
+\begin{equation}
+    \boxed{\M=\r\times\a}
+\end{equation}
+Dove $\r$ è il vettore posizione del punto in cui è applicato il vettore $\a$ rispetto ad O.
+\begin{defn}[Momento Angolare]
+Il momento angolare è il momento della quantità di moto:
+\[\l_O=\r\times\p=\r\times(m\v)\]
+\end{defn}
+\begin{defn}[Momento di una Forza]
+\[\M_O=\r\times\F\]
+\end{defn}
+\begin{property}[Variazione del Momento Angolare]
+\begin{equation}
+    \dv{\l_O}{t}=m\dv{\r\times\v}{t}=m\dv{\r}{t}\times\v+m\r\times\dv{\v}{t}=m(\v\times\v+\r\times\a)=\r\times(m\a)=\r\times\F=\M_O
+\end{equation}
+Ossia la variazione del momento angolare è determinata dall'azione di una forza esterna sul sistema.
+\end{property}
+\begin{thm}[Conservazione del Momento Angolare]
+Se la forza agente sul sistema è una forza centrale allora otteniamo:
+\[\dv{\l_O}{t}=\r\times\F(\r)=\r\times(f(|\r|)\r=f(|\r|)\r\times\r=0\iff\boxed{\l_O=costante}\]
+Ossia se la forza agente sul corpo è centrale rispetto al punto in cui si calcola il momento angolare tale momento angolare rimane \textbf{costante}.
+\end{thm}
+Ciò spiega numerosi fenomeni (ex.: la conservazione del momento angolare di un pianeta).
+Inoltre spiega anche perchè i corpi (e in particolari i pianeti) tendono a ruotare in un piano, in quanto il momento angolare rimane perpendicolare ai vettori $\r,\v$ (per definizione di momento angolare) e non cambia la propria direzione, verso e modulo, quindi i vettori $\r,\v$ non possono cambiare piano.
+
+\paragraph{La Seconda Legge di Keplero}
+La conservazione del momento angolare dal punto di vista del modulo garantisce invece che la \textbf{velocità areolare} è la stessa in ogni punto della traiettoria, indipendentemente dalla sua forma. Consideriamo l'area infinitesima determinata dal prodotto vettoriale tra il raggio vettore e lo spostamento infinitesimo $\dd\r$:
+\begin{equation}
+|\r\times\dd\r|=\dd A\then \dv{A}{t}=\frac{1}{2}\left|\r\times\dv{\r}{t}\right|=\frac{|\l_O|}{2m}=costante=v_A
+\end{equation}
+Ossia la velocità areolare è costante.
+\subsection{Gravitazione e Introduzione alla Dinamica dei Sistemi - 9 Aprile}
+\paragraph{La III Legge di Keplero}
+Notiamo che per ogni traiettoria circolare di un corpo soggetto alla forza gravitazionale (centrale) il moto è necessariamente uniforme:
+\[r=costante\quad \frac{|\l_O|}{m}=|\r\times\v|=rv=\then v=costante\]
+%Possiamo calcolare quindi l'energia meccanica uguale in ogni istante.
+Si può ottenere quindi la terza legge notando che l'unica forza agente sul sistema è la forza gravitazionale che risulta uguale alla forza centripeta in quanto il corpo si muove di moto circolare uniforme:
+\[G\frac{mM}{d^2}=md\omega^2=md\frac{4\pi^2}{T^2}\then \frac{d^3}{T^2}=\frac{GM}{4\pi^2}=k \]
+Ossia il cubo della distanza è proporzionale al quadrato del periodo.
+\paragraph{Velocità di Fuga}
+Consideriamo un corpo che si trova sulla superficie terrestre, vogliamo fornirgli l'energia necessaria per tale da fermarsi a distanza infinita, ossia tale che la sua energia meccanica si annulli:
+\[E=\frac{1}{2}m\cdot0-0=0\]
+Siccome l'energia meccanica si conserva in un campo centrale (in quanto anche conservativo) allora possiamo determinare la velocità di fuga come segue:
+\begin{equation}
+    E=\frac{1}{2}mv^2-G\frac{mM}{R_T}=0\then \boxed{v=\sqrt{\frac{2GM}{R_T}}}
+\end{equation}
+E introducendo l'accelerazione di gravità $\g$ con modulo $g=\frac{GM}{R_T^2}$ otteniamo:
+\begin{equation}
+    \boxed{v=\sqrt{2gR_T}}
+\end{equation}
+\paragraph{Afelio e Perielio}
+Per conoscere velocità e posizione dell'Afelio e Perielio di un'orbita è necessario imporre tre condizioni:
+\[\left\{\begin{array}{l}
+    v_Pr_P=v_Ar_A  \\
+    E_P=E_A  \\
+    r_P-r_A=a  
+\end{array}\right.\]
+Ossia la conservazione del momento angolare (in modulo), la conservazione dell'energia meccanica e la differenza tra la distanza al perielio e all'afelio come la distanza focale.
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
